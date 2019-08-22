@@ -2,6 +2,9 @@ precision mediump float;
 uniform float t;       // time
 uniform vec2  r;       // resolution
 
+float oneThird = 1. / 3.;
+float twoThird = 2. / 3.;
+
 void main(void){
   // 画面中央を原点とする座標系での描画位置
   vec2 p = (gl_FragCoord.xy * 2. - r) / min(r.x, r.y);
@@ -12,11 +15,11 @@ void main(void){
   float green = 0.;
   float blue = 0.;
 
-  if (periodic > 2. / 3.) {
-    red = (periodic - (2. / 3.)) * 3.;
+  if (periodic > twoThird) {
+    red = (periodic - twoThird) * 3.;
     blue = 1.;
-  } else if (periodic > 1. / 3.) {
-    green = 1. - (periodic - (1. / 3.)) * 3.;
+  } else if (periodic > oneThird) {
+    green = 1. - (periodic - oneThird) * 3.;
     blue = 1.;
   } else {
     blue = periodic * 3.;
